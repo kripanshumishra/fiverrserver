@@ -23,6 +23,6 @@
     "nodemon": "^2.0.22"
   },
   "engines": {
-    "node": ">=NODE_JS_VERSION"
+    "node": ">=14.17.1"
 }
 }
