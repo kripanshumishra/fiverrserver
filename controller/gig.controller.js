@@ -69,8 +69,13 @@ const getGigs = async( req , res , next  ) =>{
         }
     }
     if ( "search" in query ){
-        filter["title"] = {$regex : query.search , $options:"i"}
+        filter["$or"] = [{title:{$regex : query.search , $options:"i"}} , { features :
+            {$regex : query.search , $options:"i"}
+         }]
     };
+    if ( "delivery" in query ){
+        filter["deliveryTime"] = query.delivery
+    }
 
     try {
         const gigs = await Gig.find( filter ).populate( "user" , { username:1 , img:1  } );
